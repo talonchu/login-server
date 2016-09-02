@@ -89,9 +89,12 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public UserDto login(@RequestBody User user) {
-		System.out.println("username:"+user.getUserName()+",password:"+user.getPassword());
 		UserDto userDto = userService.queryUser(user.getUserName());
-		System.out.println(userDto);
-		return userDto;
+		if (user.getPassword().equals(userDto.getPassword())) {
+			System.out.println("ok");
+			return userDto;
+		}
+		System.out.println("null");
+		return null;
 	}
 }
