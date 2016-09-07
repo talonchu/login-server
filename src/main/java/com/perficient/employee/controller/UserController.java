@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.perficient.employee.domin.Role;
 import com.perficient.employee.domin.User;
 import com.perficient.employee.model.UserDto;
 import com.perficient.employee.service.UserService;
+import com.perficient.employee.util.MD5Util;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -88,9 +90,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public UserDto login(@RequestBody User user) {
+	public @ResponseBody UserDto login(@RequestBody User user) {
 		UserDto userDto = userService.queryUser(user.getUserName());
-		if (user.getPassword().equals(userDto.getPassword())) {
+		if (user.getPassword().equals(MD5Util.convertMD5(userDto.getPassword()))) {
 			System.out.println("ok");
 			return userDto;
 		}
