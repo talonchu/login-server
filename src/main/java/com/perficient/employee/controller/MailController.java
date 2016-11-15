@@ -1,6 +1,7 @@
 package com.perficient.employee.controller;
 
 import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -19,8 +20,8 @@ public class MailController {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom("hz2z1009@qq.com");
 		message.setTo("talon.chu@perficient.com");
-		message.setSubject("测试邮件主题");
-		message.setText("测试邮件内容");
+		message.setSubject("娴嬭瘯閭欢涓婚");
+		message.setText("娴嬭瘯閭欢鍐呭");
 		mailSender.send(message);
 	}
 }
