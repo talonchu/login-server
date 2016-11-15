@@ -20,4 +20,6 @@ public interface UserService {
 	public List<User> findUserById(Long id);
 	
 	public UserDto queryUser(String username);
+	
+	public void read();
 }

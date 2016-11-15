@@ -3,6 +3,10 @@ package com.perficient.employee.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.perficient.employee.domin.Role;
@@ -13,6 +17,8 @@ import com.perficient.employee.repository.UserRepository;
 import com.perficient.employee.service.UserService;
 import com.perficient.employee.util.ConvertUtil;
 
+@Configuration
+@PropertySource("classpath:/config/test.properties")
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -21,6 +27,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	 @Autowired
+     Environment env;
 
 	@Override
 	public UserDto addUser(User user) {
@@ -64,6 +73,10 @@ public class UserServiceImpl implements UserService{
 	public UserDto queryUser(String username) {
 		User user = userRepository.findUserByUserName(username);
 		return ConvertUtil.convertFromUser(user);
+	}
+	
+	public void read(){
+		System.out.println("url:"+env.getProperty("url"));
 	}
 
 }

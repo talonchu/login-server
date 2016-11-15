@@ -40,7 +40,7 @@ public class UserController {
 				}
 			}
 			if (userService.findRole(role.getRoleId()) == null) {
-				List<User> users = new ArrayList();
+				List<User> users = new ArrayList<User>();
 				users.add(user);
 				role.setUser(users);
 			}
@@ -80,7 +80,7 @@ public class UserController {
 				role.getUser().remove(u);
 			}
 			for (Role role : user.getRole()) {
-				List<User> list = new ArrayList();
+				List<User> list = new ArrayList<User>();
 				list.add(user);
 				role.setUser(list);
 			}
@@ -98,5 +98,20 @@ public class UserController {
 		}
 		System.out.println("null");
 		return null;
+	}
+	@RequestMapping(value = "/registerVerification",method = RequestMethod.GET)
+	public @ResponseBody UserDto registerVerification(String userName){
+		System.out.println(userName);
+		System.out.println(userService.queryUser(userName));
+		return userService.queryUser(userName);
+	}
+	@RequestMapping(value = "/register",method = RequestMethod.POST)
+	public @ResponseBody UserDto register(@RequestBody User user){
+		return null;
+	}
+	
+	@RequestMapping(value = "/read",method = RequestMethod.GET)
+	public void read(){
+		userService.read();
 	}
 }

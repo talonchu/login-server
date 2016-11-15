@@ -35,7 +35,7 @@ public class EmployeeServiceImplTest {
 		
 	@Before
 	public void setUp() throws Exception {
-		employee = new Employee("mike", "li", null);
+		employee = new Employee("mikee", "li", null);
 		employee.setEmployeeId(1L);
 		List<Project> list = new ArrayList<Project>();
 		Project project = new Project("pro1", employee);
